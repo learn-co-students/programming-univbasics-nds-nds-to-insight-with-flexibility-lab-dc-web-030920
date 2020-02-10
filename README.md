@@ -2,7 +2,8 @@
 
 ## Learning Goals
 
-* See-saw between bottom-up and top-down method writing
+
+*See-saw between bottom-up and top-down method writing
 
 ## Introduction
 
