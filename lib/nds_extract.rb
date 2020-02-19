@@ -21,7 +21,7 @@ def flatten_a_o_a(aoa)
 end
 
 def movie_with_director_name(director_name, movie_data)
-  { 
+  {
     :title => movie_data[:title],
     :worldwide_gross => movie_data[:worldwide_gross],
     :release_year => movie_data[:release_year],
@@ -48,6 +48,14 @@ def movies_with_director_key(name, movies_collection)
   # Array of Hashes where each Hash represents a movie; however, they should all have a
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
+  array_of_movies = []
+  movie_counter = 0
+  while movie_counter < movies_collection.length do
+    each_movie = movies_collection[movie_counter]
+    array_of_movies.push(movie_with_director_name(name,each_movie))
+    movie_counter += 1
+  end
+  p array_of_movies
 end
 
 
@@ -63,6 +71,24 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  # collection = [
+  #               {:title=>"Movie A", :studio=>"Alpha Films", :worldwide_gross=>10},
+  #               {:title=>"Movie B", :studio=>"Alpha Films", :worldwide_gross=>30},
+  #               {:title=>"Movie C", :studio=>"Omega Films", :worldwide_gross=>30}
+  #              ]
+  my_hash = {}
+  movie_counter = 0
+  while movie_counter < collection.length do
+    studio_as_a_key = collection[movie_counter][:studio]
+    gross_as_a_value = collection[movie_counter][:worldwide_gross]
+    if !my_hash[studio_as_a_key]
+        my_hash[studio_as_a_key] = gross_as_a_value
+    else
+      my_hash[studio_as_a_key] += gross_as_a_value
+    end
+    movie_counter += 1
+  end
+  p my_hash
 end
 
 def movies_with_directors_set(source)
@@ -76,6 +102,24 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
+  my_array = []
+  i = 0
+  while i < source.length do
+    movies_array = source[i][:movies]
+    director_name = source[i][:name]
+    j = 0
+    while j < source[i][:movies].length do
+      movie_hash = source[i][:movies][j]
+      if !movie_hash[:director_name]
+          movie_hash[:director_name] = director_name
+      end
+      j += 1
+    end
+      my_array << movies_array
+    i += 1
+
+  end
+p my_array
 end
 
 # ----------------    End of Your Code Region --------------------
