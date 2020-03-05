@@ -55,7 +55,9 @@ describe 'movies_with_directors_set' do
         it 'correctly "distributes" Byron Poodle as :director_name of the first film' do
           # { :name => "A", :movies => [{ :title => "Test" }] }
           # becomes... [[{:title => "Test", :director_name => "A"}], ...[], ... []]
-          results = movies_with_directors_set(test_data)
+          results = movies_with_directors_set
+          (test_data)
+          # binding.pry
           expect(results.first.first[:director_name]).to eq("Byron Poodle"),
             "The first element of the AoA should have 'Byron Poodle' as :director_name"
         end
