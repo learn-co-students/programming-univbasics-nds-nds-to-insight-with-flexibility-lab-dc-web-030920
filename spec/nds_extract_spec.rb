@@ -49,7 +49,7 @@ describe 'movies_with_directors_set' do
               { :title => "Biting" },
             ]
             }
-          ] 
+          ]
         }
 
         it 'correctly "distributes" Byron Poodle as :director_name of the first film' do
@@ -83,7 +83,7 @@ describe 'gross_per_studio' do
   end
 end
 
-
+=begin
 describe 'The directors_database method can be processed by the studios_totals method' do
   describe "and correctly totals the directors' totals" do
     let(:expected) {
@@ -143,8 +143,6 @@ describe 'The directors_database method can be processed by the studios_totals m
     it "correctly total 'MGM'" do
       expect(studios_totals(directors_database)['MGM']).to eq(expected['MGM'])
     end
-
-
-
   end
 end
+=end
