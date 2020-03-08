@@ -23,14 +23,13 @@ def flatten_a_o_a(aoa)
 end
 
 def movie_with_director_name(director_name, movie_data)
-  hash = {
+  {
     :title => movie_data[:title],
     :worldwide_gross => movie_data[:worldwide_gross],
     :release_year => movie_data[:release_year],
     :studio => movie_data[:studio],
     :director_name => director_name
   }
-  return hash
 end
 
 
@@ -52,9 +51,6 @@ def movies_with_director_key(name, movies_collection)
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
   arrOfMovies = []
-#  movies_collection = movie_with_director_name(name, movies_collection[0])
-  #puts movies_collection
-  #puts movie_with_director_name(name, movies_collection[0])
   movies_collection.each do |movie|
     hash = movie_with_director_name(name, movie)
     arrOfMovies << hash
@@ -102,7 +98,6 @@ def movies_with_directors_set(source)
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
   movies = []
-
   source.each do |key|
     director_name = key[:name]
     directors_movies = key[:movies]
@@ -110,6 +105,7 @@ def movies_with_directors_set(source)
   end
 movies
 end
+
 # ----------------    End of Your Code Region --------------------
 # Don't edit the following code! Make the methods above work with this method
 # call code. You'll have to "see-saw" to get this to work!
