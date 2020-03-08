@@ -83,7 +83,6 @@ describe 'gross_per_studio' do
   end
 end
 
-=begin
 describe 'The directors_database method can be processed by the studios_totals method' do
   describe "and correctly totals the directors' totals" do
     let(:expected) {
@@ -145,4 +144,3 @@ describe 'The directors_database method can be processed by the studios_totals m
     end
   end
 end
-=end

@@ -78,11 +78,11 @@ def gross_per_studio(collection)
   studios = {}
   newStudios = {}
   collection.each do |hash|
-    if studios.has_key?(hash[:studio])
-      studios = studios.update(studios){|k,v|
-        v + hash[:worldwide_gross]}
-    else
+    if !studios.has_key?(hash[:studio])
       studios[hash[:studio]] = hash[:worldwide_gross]
+      puts hash[:worldwide_gross]
+    else
+      studios[hash[:studio]] += hash[:worldwide_gross]
     end
   end
   puts studios
@@ -101,32 +101,21 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
-  finalArr = []
-  source.each do |key|
-    key[:movies].each do |movie|
-      newHash = {}
-      newArr = []
-      #newHash = movies_with_director_key(key[:name], source)
-      newHash[:director_name] = key[:name]
-      newHash[:title] = movie[:title]
-      newHash[:worldwide_gross] = 5
-      newHash[:release_year] = 20000
-      newHash[:studio] = "Karbit Poodles"
-      puts newHash
-      newArr << newHash
-      finalArr << newArr
-  end
-  end
-  return finalArr
-end
+  movies = []
 
+  source.each do |key|
+    director_name = key[:name]
+    directors_movies = key[:movies]
+    movies << movies_with_director_key(director_name, directors_movies)
+  end
+movies
+end
 # ----------------    End of Your Code Region --------------------
 # Don't edit the following code! Make the methods above work with this method
 # call code. You'll have to "see-saw" to get this to work!
-=begin
+
 def studios_totals(nds)
   a_o_a_movies_with_director_names = movies_with_directors_set(nds)
   movies_with_director_names = flatten_a_o_a(a_o_a_movies_with_director_names)
   return gross_per_studio(movies_with_director_names)
 end
-=end
